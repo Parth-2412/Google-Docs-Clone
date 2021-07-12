@@ -1,8 +1,11 @@
 import Button from "@material-tailwind/react/Button";
 import Icon from "@material-tailwind/react/Icon";
+import Dropdown from "@material-tailwind/react/Dropdown";
+import DropdownItem from "@material-tailwind/react/DropdownItem";
 import Image from "next/image";
 import { useContext, useState } from "react";
 import { UserContext } from "../util/context";
+import { signOut } from "next-auth/client";
 
 function Header() {
 	const [searchFocus, setSearchFocus] = useState(false);
@@ -52,7 +55,7 @@ function Header() {
 					onBlur={() => setSearchFocus(false)}
 				/>
 			</div>
-			<div className="flex space-x-10">
+			<div className="flex">
 				<Button
 					color="gray"
 					ripple="dark"
@@ -70,6 +73,23 @@ function Header() {
 					// src="https://lh3.googleusercontent.com/ogw/ADea4I6yenyXzk1obi40hiYZV7UaQzZrl0h9qZCxgUWt=s64-c-mo"
 					src={image_url}
 				/>
+				<Dropdown
+					ripple="dark"
+					buttonType="outline"
+					color="gray"
+					className="border-0 ml-0 pl-0 w-10 h-10"
+					size="small"
+				>
+					<DropdownItem
+						onClick={() => {
+							signOut({
+								callbackUrl: "/auth/signin",
+							});
+						}}
+					>
+						Sign Out
+					</DropdownItem>
+				</Dropdown>
 			</div>
 		</div>
 	);
