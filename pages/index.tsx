@@ -11,18 +11,12 @@ import { IDocument, IServerDocument } from "../interfaces/IDocument";
 import firebase from "firebase";
 import Document from "../components/Document";
 import { checkUserAccess } from "../util/check";
+import { convertDocClient } from "../util/convert";
 
 export default function Home({ userDocs }: { userDocs: IServerDocument[] }) {
 	const [session] = useSession();
 	const [docs, setDocs] = useState<Array<IDocument>>(
-		userDocs.map((doc) => ({
-			...doc,
-			createdAt: new firebase.firestore.Timestamp(
-				doc.createdAt / 1000,
-				0
-			),
-			users: doc.users.map((user) => db.collection("users").doc(user)),
-		}))
+		userDocs.map(convertDocClient)
 	);
 	const router = useRouter();
 	useEffect(() => {
@@ -32,6 +26,7 @@ export default function Home({ userDocs }: { userDocs: IServerDocument[] }) {
 					const data = doc.data() as IDocument;
 					return {
 						...data,
+						id: doc.id,
 					};
 				})
 			);
@@ -106,7 +101,7 @@ export default function Home({ userDocs }: { userDocs: IServerDocument[] }) {
 						</div>
 					</div>
 					{docs.map((doc) => (
-						<Document {...doc} />
+						<Document {...doc} key={doc.id} />
 					))}
 				</div>
 			</div>
@@ -129,6 +124,7 @@ export async function getServerSideProps(context) {
 								...data,
 								createdAt: +data.createdAt.toDate(),
 								users: data.users.map((user) => user.id),
+								id: doc.id,
 							};
 						}),
 				},
