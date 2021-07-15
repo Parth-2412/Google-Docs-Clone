@@ -58,19 +58,23 @@ export default function Home({ userDocs }: { userDocs: IServerDocument[] }) {
 							<div
 								className="relative border-2 h-52 w-40 hover:border-blue-400 cursor-pointer"
 								onClick={() => {
-									db.collection("docs").add({
-										name: "Untitled",
-										users: [
-											db
-												.collection("users")
-												.doc(session.id as string),
-										],
-										createdAt:
-											new firebase.firestore.Timestamp(
-												+new Date() / 1000,
-												0
-											),
-									});
+									db.collection("docs")
+										.add({
+											name: "Untitled",
+											users: [
+												db
+													.collection("users")
+													.doc(session.id as string),
+											],
+											createdAt:
+												new firebase.firestore.Timestamp(
+													+new Date() / 1000,
+													0
+												),
+										})
+										.then((doc) =>
+											router.push(`/docs/${doc.id}`)
+										);
 								}}
 							>
 								<Image
