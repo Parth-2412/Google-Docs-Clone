@@ -100,9 +100,14 @@ export default function Home({ userDocs }: { userDocs: IServerDocument[] }) {
 							</Button>
 						</div>
 					</div>
-					{docs.map((doc) => (
-						<Document {...doc} key={doc.id} />
-					))}
+					{docs
+						.sort(
+							(a, b) =>
+								+b.createdAt.toDate() - +a.createdAt.toDate()
+						)
+						.map((doc) => (
+							<Document {...doc} key={doc.id} />
+						))}
 				</div>
 			</div>
 		</UserContext.Provider>
