@@ -2,6 +2,7 @@ import Icon from "@material-tailwind/react/Icon";
 import Button from "@material-tailwind/react/Button";
 import { IDocument } from "../interfaces/IDocument";
 import { useRouter } from "next/router";
+import { db } from "../util/firebase";
 
 function Document({ name, createdAt, id }: IDocument) {
 	const router = useRouter();
@@ -27,9 +28,12 @@ function Document({ name, createdAt, id }: IDocument) {
 					color="gray"
 					buttonType="outline"
 					className="border-0"
-					onClick={(e) => e.stopPropagation()}
+					onClick={(e) => {
+						e.stopPropagation();
+						db.collection("docs").doc(id).delete();
+					}}
 				>
-					<Icon name="more_vert" size="2xl" />
+					<Icon name="delete" size="2xl" />
 				</Button>
 			</div>
 		</div>
