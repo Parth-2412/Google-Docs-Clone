@@ -108,7 +108,7 @@ function Doc({ userDoc }: { userDoc: IServerDocument }) {
 			<div className="bg-gray-100 min-h-screen pt-4">
 				<Editor
 					editorClassName="bg-white m-7 p-8"
-					toolbarClassName="lg:!flex !justify-center !hidden"
+					toolbarClassName="flex !justify-center"
 					editorState={editorState.editor}
 					onEditorStateChange={(newEditorState) => {
 						setEditorState({
