@@ -39,7 +39,7 @@ function Doc({ userDoc }: { userDoc: IServerDocument }) {
 					...data,
 					id: snapshot.id,
 				});
-				if (!snapshot.metadata.hasPendingWrites) {
+				if (!snapshot.metadata.hasPendingWrites && doc.content) {
 					setEditorState({
 						editor: EditorState.createWithContent(
 							convertFromRaw(data.content)
