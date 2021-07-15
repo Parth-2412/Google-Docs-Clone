@@ -29,8 +29,9 @@ function Document({ name, createdAt, id }: IDocument) {
 					buttonType="outline"
 					className="border-0"
 					onClick={(e) => {
-						e.stopPropagation();
 						db.collection("docs").doc(id).delete();
+						router.push("/");
+						e.stopPropagation();
 					}}
 				>
 					<Icon name="delete" size="2xl" />
