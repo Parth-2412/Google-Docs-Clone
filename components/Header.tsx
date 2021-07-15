@@ -1,18 +1,12 @@
 import Button from "@material-tailwind/react/Button";
 import Icon from "@material-tailwind/react/Icon";
-import Dropdown from "@material-tailwind/react/Dropdown";
-import DropdownItem from "@material-tailwind/react/DropdownItem";
-import Image from "next/image";
-import { useContext, useState } from "react";
-import { UserContext } from "../util/context";
-import { signOut } from "next-auth/client";
+
+import { useState } from "react";
+import Avatar from "./Avatar";
 
 function Header() {
 	const [searchFocus, setSearchFocus] = useState(false);
-	const session = useContext(UserContext);
-	const image_url =
-		session?.user?.image ||
-		"https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg";
+
 	return (
 		<div className="sticky top-0 z-50 flex items-center px-4 py-4 shadow-md bg-white">
 			<Button
@@ -66,30 +60,7 @@ function Header() {
 				>
 					<Icon name="apps" size="3xl" />
 				</Button>
-				<Image
-					className="w-10 h-10 cursor-pointer hover:shadow-md rounded-3xl"
-					width={40}
-					height={40}
-					// src="https://lh3.googleusercontent.com/ogw/ADea4I6yenyXzk1obi40hiYZV7UaQzZrl0h9qZCxgUWt=s64-c-mo"
-					src={image_url}
-				/>
-				<Dropdown
-					ripple="dark"
-					buttonType="outline"
-					color="gray"
-					className="border-0 ml-0 pl-0 w-10 h-10"
-					size="small"
-				>
-					<DropdownItem
-						onClick={() => {
-							signOut({
-								callbackUrl: "/auth/signin",
-							});
-						}}
-					>
-						Sign Out
-					</DropdownItem>
-				</Dropdown>
+				<Avatar />
 			</div>
 		</div>
 	);

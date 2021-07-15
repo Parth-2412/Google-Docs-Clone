@@ -20,7 +20,7 @@ export default function Home({ userDocs }: { userDocs: IServerDocument[] }) {
 	);
 	const router = useRouter();
 	useEffect(() => {
-		db.collection("docs").onSnapshot((snapshot) => {
+		return db.collection("docs").onSnapshot((snapshot) => {
 			setDocs(
 				snapshot.docs.filter(checkUserAccess(session)).map((doc) => {
 					const data = doc.data() as IDocument;
