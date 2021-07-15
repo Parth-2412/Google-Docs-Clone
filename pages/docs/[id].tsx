@@ -10,7 +10,7 @@ import { EditorState, convertFromRaw, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import dynamic from "next/dynamic";
 import { Editor as TextEditor } from "react-draft-wysiwyg";
-import { useRouter } from "next/router";
+import Logo from "../../components/Logo";
 
 const Editor = dynamic<TextEditor>(
 	() => import("react-draft-wysiwyg").then((module) => module.Editor),
@@ -28,7 +28,6 @@ function Doc({ userDoc }: { userDoc: IServerDocument }) {
 			: EditorState.createEmpty(),
 		local: true,
 	});
-	const router = useRouter();
 	const firstUpdate = useRef(true);
 	useEffect(() => {
 		return db
@@ -73,14 +72,7 @@ function Doc({ userDoc }: { userDoc: IServerDocument }) {
 	return (
 		<div>
 			<div className="flex p-3 items-center">
-				<div className="cursor-pointer">
-					<Icon
-						onClick={() => router.push("/")}
-						name="description"
-						color="blue"
-						size="5xl"
-					/>
-				</div>
+				<Logo />
 				<div className="flex-grow px-2">
 					<input
 						className="px-1 text-lg text-left"

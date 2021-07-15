@@ -3,6 +3,7 @@ import Icon from "@material-tailwind/react/Icon";
 
 import { useState } from "react";
 import Avatar from "./Avatar";
+import Logo from "./Logo";
 
 function Header() {
 	const [searchFocus, setSearchFocus] = useState(false);
@@ -20,7 +21,7 @@ function Header() {
 				<Icon name="menu" size="3xl" />
 			</Button>
 			<div className="flex items-center space-x-1 mx-4">
-				<Icon name="description" size="4xl" color="blue" />
+				<Logo size="4xl" />
 				<span className="text-gray-700 text-2xl">Docs</span>
 			</div>
 			<div
