@@ -10,7 +10,6 @@ import { EditorState, convertFromRaw, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import dynamic from "next/dynamic";
 import { Editor as TextEditor } from "react-draft-wysiwyg";
-import _ from "lodash";
 
 const Editor = dynamic<TextEditor>(
 	() => import("react-draft-wysiwyg").then((module) => module.Editor),
