@@ -19,6 +19,7 @@ export default NextAuth({
 	adapter: FirebaseAdapter(db),
 	pages: {
 		signIn: "/auth/signin",
+		signOut: "/",
 	},
 	callbacks: {
 		session: async (session, user) => {
