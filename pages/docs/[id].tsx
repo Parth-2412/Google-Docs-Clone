@@ -11,6 +11,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import dynamic from "next/dynamic";
 import { Editor as TextEditor } from "react-draft-wysiwyg";
 import Logo from "../../components/Logo";
+import Head from "next/head";
 
 const Editor = dynamic<TextEditor>(
 	() => import("react-draft-wysiwyg").then((module) => module.Editor),
@@ -71,6 +72,9 @@ function Doc({ userDoc }: { userDoc: IServerDocument }) {
 	}, [name]);
 	return (
 		<div>
+			<Head>
+				<title>{doc.name}</title>
+			</Head>
 			<div className="flex p-3 items-center">
 				<Logo />
 				<div className="flex-grow px-2">
