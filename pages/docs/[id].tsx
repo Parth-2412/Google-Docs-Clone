@@ -83,7 +83,7 @@ function Doc({ userDoc }: { userDoc: IServerDocument }) {
 						value={name}
 						onChange={(e) => setName(e.target.value)}
 					/>
-					<div className="flex h-8 items-center space-x-1">
+					<div className="md:flex h-8 items-center space-x-1 hidden ">
 						{[
 							"Files",
 							"Edit",
