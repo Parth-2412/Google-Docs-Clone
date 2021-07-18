@@ -36,6 +36,16 @@ function MyApp({ Component, pageProps }) {
 					showOnShallow={true}
 				/>
 				<Component {...pageProps} />
+				<div className="text-gray-500 p-5 flex bottom-0 left-0 right-0 z-10 justify-center absolute ">
+					<p>Created by</p>
+					&nbsp;
+					<a
+						href="https://www.instagram.com/parth_2412_/"
+						className="font-medium hover:text-black"
+					>
+						Parth2412
+					</a>
+				</div>
 			</Provider>
 		</>
 	);
